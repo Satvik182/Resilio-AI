@@ -171,6 +171,12 @@ export default function RoutesPage() {
                       >
                         <div className="flex justify-between items-start w-full text-[10px]">
                           <h4 className="font-bold text-zinc-200">{route.name}</h4>
+                          <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider shrink-0 ml-1 ${
+                            route.safetyRating >= 85 ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" :
+                            route.safetyRating >= 60 ? "bg-amber-500/20 text-amber-400 border border-amber-500/30" : "bg-rose-500/20 text-rose-400 border border-rose-500/30"
+                          }`}>
+                            {route.safetyRating}% SAFETY
+                          </span>
                         </div>
 
                         <div className="flex items-center gap-3 text-[9px] text-zinc-500 font-mono">
@@ -181,6 +187,11 @@ export default function RoutesPage() {
                           <span>{route.distanceKm} KM</span>
                         </div>
 
+                        {route.hazardReason && isSelected && (
+                          <div className="p-2 bg-rose-950/20 border border-rose-900/40 text-[9px] text-rose-350 leading-normal rounded font-sans">
+                            ⚠️ {route.hazardReason}
+                          </div>
+                        )}
                       </button>
                     );
                   })}
